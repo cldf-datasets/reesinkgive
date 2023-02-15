@@ -16,7 +16,7 @@ class Dataset(BaseDataset):
 
         >>> self.raw_dir.download(url, fname)
         """
-        pass
+        self.raw_dir.xlsx2csv('Reesink2013_modified.xlsx')
 
     def cmd_makecldf(self, args):
         """
