@@ -91,11 +91,28 @@ class Dataset(BaseDataset):
         with open(data_file, encoding='utf-8') as f:
             raw_data = read_data(f)
 
+        parameter_table = self.etc_dir.read_csv('parameters.csv', dicts=True)
+
         glottolog = args.glottolog.api
         language_table = list(map(
             languoid_to_lang,
             glottolog.languoids(ids=raw_data)))
 
+        parameter_ids = {param['ID'] for param in parameter_table}
+        value_table = [
+            {
+                'ID': '{}-{}'.format(glottocode, param_id),
+                'Language_ID': glottocode,
+                'Parameter_ID': param_id,
+                'Value': value,
+            }
+            for glottocode, row in raw_data.items()
+            for param_id, value in row.items()
+            if param_id in parameter_ids]
+
         args.writer.cldf.add_component('LanguageTable')
+        args.writer.cldf.add_component('ParameterTable')
 
         args.writer.objects['LanguageTable'] = language_table
+        args.writer.objects['ParameterTable'] = parameter_table
+        args.writer.objects['ValueTable'] = value_table
