@@ -45,9 +45,27 @@ def read_data(stream):
     return data
 
 
+def languoid_to_lang(languoid):
+    language = {
+        'ID': languoid.glottocode,
+        'Name': languoid.name,
+        'Glottocode': languoid.glottocode,
+    }
+    isocode = languoid.iso
+    if isocode:
+        language['ISO639P3code'] = isocode
+    if languoid.latitude:
+        language['Latitude'] = languoid.latitude
+        language['Longitude'] = languoid.longitude
+    macroareas = languoid.macroareas
+    if macroareas:
+        language['Macroarea'] = macroareas[0].name
+    return language
+
+
 class Dataset(BaseDataset):
     dir = pathlib.Path(__file__).parent
-    id = "reesinkgive"
+    id = 'reesinkgive'
 
     def cldf_specs(self):  # A dataset must declare all CLDF sets it creates.
         return CLDFSpec(
@@ -72,4 +90,12 @@ class Dataset(BaseDataset):
         data_file = self.raw_dir / 'Reesink2013_modified.Sheet1.csv'
         with open(data_file, encoding='utf-8') as f:
             raw_data = read_data(f)
-        # glottolog = args.glottolog
+
+        glottolog = args.glottolog.api
+        language_table = list(map(
+            languoid_to_lang,
+            glottolog.languoids(ids=raw_data)))
+
+        args.writer.cldf.add_component('LanguageTable')
+
+        args.writer.objects['LanguageTable'] = language_table
