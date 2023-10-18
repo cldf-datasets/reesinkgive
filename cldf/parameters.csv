@@ -1,5 +1,6 @@
 ID,Name,Description,ColumnSpec
-order-with-suffix-1,Order with theme suffix (1),,
-order-with-suffix-2,Order with theme suffix (2),,
-order-without-affix,Order with no theme affix,,
+affix-order,Order of verb and actor/undergoer affíxes,,
+affix-position,Position of undergoer affix,,
+clause-level-order,Clause-level order,,
 recipient-vs-theme,Recipient vs. theme,,
+recipient-suppletion,Recipient suppletion,,
