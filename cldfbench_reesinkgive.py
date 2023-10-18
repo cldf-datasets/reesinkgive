@@ -1,8 +1,10 @@
 from collections import OrderedDict
 import csv
+from itertools import groupby
 import pathlib
 
 from cldfbench import CLDFSpec, Dataset as BaseDataset
+from pybtex.database import parse_file
 
 
 def read_data(stream):
@@ -45,7 +47,7 @@ def read_data(stream):
     return data
 
 
-def languoid_to_lang(languoid):
+def languoid_to_lang(languoid, source_assocs):
     language = {
         'ID': languoid.glottocode,
         'Name': languoid.name,
@@ -60,7 +62,22 @@ def languoid_to_lang(languoid):
     macroareas = languoid.macroareas
     if macroareas:
         language['Macroarea'] = macroareas[0].name
+    if (sources := source_assocs.get(languoid.glottocode)):
+        language['Source'] = list(map(format_source, sources))
+        language['Source_comment'] = '; '.join(
+            trimmed
+            for source in sources
+            if (trimmed := source.get('prose_ref', '').strip()))
     return language
+
+
+def format_source(source_assoc):
+    if (pages := source_assoc.get('pages')):
+        return '{}[{}]'.format(
+            source_assoc['glottolog_ref'],
+            pages.replace(';', ','))
+    else:
+        return source_assoc['glottolog_ref']
 
 
 class Dataset(BaseDataset):
@@ -79,7 +96,8 @@ class Dataset(BaseDataset):
 
         >>> self.raw_dir.download(url, fname)
         """
-        self.raw_dir.xlsx2csv('Reesink2013_modified.xlsx')
+        # we switched over to using csv files directly
+        # self.raw_dir.xlsx2csv('Reesink2013_modified.xlsx')
 
     def cmd_makecldf(self, args):
         """
@@ -91,12 +109,20 @@ class Dataset(BaseDataset):
         with open(data_file, encoding='utf-8') as f:
             raw_data = read_data(f)
 
+        with open(self.etc_dir / 'sources.bib', encoding='utf-8') as f:
+            sources = parse_file(f, 'bibtex')
+        source_assocs = {
+            glottocode: list(rows)
+            for glottocode, rows in groupby(
+                self.etc_dir.read_csv('source_assocs.csv', dicts=True),
+                lambda r: r['glottocode'])}
+
         parameter_table = self.etc_dir.read_csv('parameters.csv', dicts=True)
 
         glottolog = args.glottolog.api
-        language_table = list(map(
-            languoid_to_lang,
-            glottolog.languoids(ids=raw_data)))
+        language_table = [
+            languoid_to_lang(languoid, source_assocs)
+            for languoid in glottolog.languoids(ids=raw_data)]
 
         parameter_ids = {param['ID'] for param in parameter_table}
         value_table = [
@@ -110,9 +136,13 @@ class Dataset(BaseDataset):
             for param_id, value in row.items()
             if param_id in parameter_ids]
 
-        args.writer.cldf.add_component('LanguageTable')
+        args.writer.cldf.add_component(
+            'LanguageTable',
+            'http://cldf.clld.org/v1.0/terms.rdf#source',
+            'Source_comment')
         args.writer.cldf.add_component('ParameterTable')
 
         args.writer.objects['LanguageTable'] = language_table
         args.writer.objects['ParameterTable'] = parameter_table
         args.writer.objects['ValueTable'] = value_table
+        args.writer.cldf.add_sources(sources)
