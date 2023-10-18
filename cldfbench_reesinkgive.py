@@ -2,12 +2,15 @@ from collections import OrderedDict
 import csv
 from itertools import groupby
 import pathlib
+import re
 
 from cldfbench import CLDFSpec, Dataset as BaseDataset
 from pybtex.database import parse_file
 
 
 def read_data(stream):
+    # TODO: remove?
+    # this manually deals with the csv files converted from excel
     csv_reader = csv.reader(stream)
     # drop header (and check if things have changed)
     assert next(csv_reader) == [
@@ -47,6 +50,14 @@ def read_data(stream):
     return data
 
 
+def normalise_header(header):
+    return re.sub(r'\s+', ' ', header.strip())
+
+
+def normalise_cell(cell):
+    return cell.strip()
+
+
 def languoid_to_lang(languoid, source_assocs):
     language = {
         'ID': languoid.glottocode,
@@ -80,6 +91,12 @@ def format_source(source_assoc):
         return source_assoc['glottolog_ref']
 
 
+def make_code_id(parameter_id, value):
+    return '{}-{}'.format(
+        parameter_id,
+        re.sub(r'[^a-z0-9\-_]', '-', value.lower()))
+
+
 class Dataset(BaseDataset):
     dir = pathlib.Path(__file__).parent
     id = 'reesinkgive'
@@ -105,9 +122,12 @@ class Dataset(BaseDataset):
 
         >>> args.writer.objects['LanguageTable'].append(...)
         """
-        data_file = self.raw_dir / 'Reesink2013_modified.Sheet1.csv'
-        with open(data_file, encoding='utf-8') as f:
-            raw_data = read_data(f)
+        with open(self.raw_dir / 'Reesink2013.csv', encoding='utf-8') as f:
+            rdr = csv.reader(f, delimiter=';')
+            header = list(map(normalise_header, next(rdr)))
+            raw_data = [
+                dict(zip(header, map(normalise_cell, row)))
+                for row in rdr]
 
         with open(self.etc_dir / 'sources.bib', encoding='utf-8') as f:
             sources = parse_file(f, 'bibtex')
@@ -117,32 +137,49 @@ class Dataset(BaseDataset):
                 self.etc_dir.read_csv('source_assocs.csv', dicts=True),
                 lambda r: r['glottocode'])}
 
-        parameter_table = self.etc_dir.read_csv('parameters.csv', dicts=True)
+        parameters = {
+            param['Original_Name']: param
+            for param in self.etc_dir.read_csv('parameters.csv', dicts=True)}
 
         glottolog = args.glottolog.api
+        glottocodes = {row['Glottocode'] for row in raw_data}
         language_table = [
             languoid_to_lang(languoid, source_assocs)
-            for languoid in glottolog.languoids(ids=raw_data)]
+            for languoid in glottolog.languoids(ids=glottocodes)]
 
-        parameter_ids = {param['ID'] for param in parameter_table}
         value_table = [
             {
-                'ID': '{}-{}'.format(glottocode, param_id),
-                'Language_ID': glottocode,
-                'Parameter_ID': param_id,
+                'ID': '{}-{}'.format(row['Glottocode'], parameter['ID']),
+                'Language_ID': row['Glottocode'],
+                'Parameter_ID': parameter['ID'],
+                'Code_ID': make_code_id(parameter['ID'], value),
                 'Value': value,
             }
-            for glottocode, row in raw_data.items()
-            for param_id, value in row.items()
-            if param_id in parameter_ids]
+            for row in raw_data
+            for column_name, value in row.items()
+            if (parameter := parameters.get(column_name))]
+
+        codes = {}
+        for value in value_table:
+            code_id = make_code_id(value['Parameter_ID'], value['Value'])
+            if code_id in codes:
+                continue
+            codes[code_id] = {
+                'ID': code_id,
+                'Parameter_ID': value['Parameter_ID'],
+                'Name': value['Value'],
+            }
+        code_table = sorted(codes.values(), key=lambda c: c['ID'])
 
         args.writer.cldf.add_component(
             'LanguageTable',
             'http://cldf.clld.org/v1.0/terms.rdf#source',
             'Source_comment')
         args.writer.cldf.add_component('ParameterTable')
+        args.writer.cldf.add_component('CodeTable')
 
         args.writer.objects['LanguageTable'] = language_table
-        args.writer.objects['ParameterTable'] = parameter_table
+        args.writer.objects['ParameterTable'] = parameters.values()
+        args.writer.objects['CodeTable'] = code_table
         args.writer.objects['ValueTable'] = value_table
         args.writer.cldf.add_sources(sources)

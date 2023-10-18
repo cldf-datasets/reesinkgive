@@ -1,0 +1,74 @@
+Glottocode;Order of verb and actor/undergoer affíxes;Position of undergoer affix;Clause-level order;"Recipient vs.
+theme";Recipient suppletion
+amel1241;V-U-A;suffix;SOV;R=T;suppletion
+duna1248;other;none;SOV;R=T;no
+fore1270;U-V-A;prefix;SOV;R=T;no
+goli1247;V-A;none;SOV;R=T;no
+huaa1250;other;prefix;SOV;R=T;no
+kalu1248;V-A;none;SOV;R and T different;no
+kamo1255;V-U-A;suffix;SOV;R=T;no
+kana1288;other;prefix/suffix;SOV;R=T;no
+rawa1267;U-V-A/V-U-A;prefix/suffix;SOV;R=T;no
+west2599;V-A;none;SOV;R=T;suppletion
+kobo1249;V-A;none;SOV;R=T;no
+gras1249;other;suffix;SOV;R=T;no
+kora1294;V-A;none;SOV;R=T;no
+kesa1244;V-U-A;suffix;SOV;R=T;suppletion
+koro1312;V-A;none;SOV;R=T;no
+mauw1238;U-V-A;prefix;SOV;R=T;suppletion
+meny1245;U-V-A;prefix;SOV;R=T;suppletion
+mian1256;U-V-A;prefix;SOV;R=beneficiary;no
+naba1256;U-V-A;prefix;SOV;R=T;no
+ngge1241;V-U-A;suffix;SOV;R=T;no
+salt1242;V-A;none;SOV;R=T;no
+sele1250;U-V-A/V-U-A;prefix/suffix;SOV;R=T;suppletion
+siro1249;V-U-A;suffix;SOV;R=T;suppletion
+suen1241;V-A;none;SOV;R and T different;no
+tain1253;other;suffix;SOV;R=T;suppletion
+tauy1241;U-V-A;prefix;SOV;R=T;no
+tele1256;U-V-A;prefix;SOV;R=beneficiary;no
+uman1240;U-V-A/V-U-A;prefix/suffix;SOV;R=T;suppletion
+unaa1239;V-U-A;suffix;SOV;R=T;no
+usan1239;other;prefix;SOV;R=T;suppletion
+wamb1259;V-A;none;SOV;R and T different;no
+wask1241;other;suffix;SOV;R=T;suppletion
+yaga1260;other;prefix;SOV;R=T;no
+abau1245;other;none;SOV;R=T;no
+abui1241;other;prefix;SOV;R=T;no
+alam1246;V-A-U;suffix;SOV;R=T;no
+ambu1247;V-S/A;none;SVO/SOV;R=T;suppletion
+aram1253;U-V-A;prefix;SOV;R=T;no
+bauz1241;other;none;SOV;R and T different;no
+bine1240;U-V-A;prefix;SOV;R=T;no
+buki1249;A-U-V/ A-V-U;prefix/suffix;SVO;R=T;no
+buna1278;other;prefix;SOV;R=T;no
+gizr1240;U-V-A;prefix;SOV;R=T;no
+hata1243;S/A-V;none;SVO;R and T different;no
+imon1245;other;prefix/suffix;SVO;R and T different;suppletion
+suab1238;A-U-V;prefix;SOV;R=T;no
+kris1246;A-V-U;suffix;SOV;R and T different;no
+kama1367;A-V-U;suffix;SOV;R=T;no
+sout2949;other;prefix;SVO/SOV;R=T;suppletion
+kelo1247;other;prefix;SOV;R=T;no
+kolp1236;S/A-V;none;SVO;R and T different;no
+kuot1243;other;prefix/suffix;VSO;R and T partially different;no
+lavu1241;U-A-V/ A-V-U;prefix/suffix;SOV;R and T different;no
+nucl1594;V-A-U;suffix;SOV;R=T;no
+mali1284;A-V-U;suffix;SVO;R=T;no
+nucl1622;A-U-V/ A-V-U;suffix;SVO/SOV;R=T;suppletion
+maib1239;S/A-V;none;SVO;R=T;no
+mend1268;other;none;SOV;R=T;no
+dera1245;V-A-U;suffix;SOV;R=T;suppletion
+meya1236;A-V-U;suffix;SVO;R and T different;no
+moii1235;S/A-V;none;SVO;R and T different;no
+siwa1245;V-U-A;suffix;SOV;R=T;no
+nami1256;other;suffix;SOV;R=T;no
+orya1242;V-U-A;suffix;SOV;R and T different;suppletion
+roto1249;V-S/A;none;SOV;R=T;no
+sulk1246;S/A-V;none;SVO;R and T partially different;no
+teiw1235;other;prefix;SOV;R=T;no
+tido1248;S/A-V;none;SVO;R=T;no
+tobe1252;A-U-V;prefix;SOV;R=T;no
+yele1255;other;none;SOV;R and T different;suppletion
+yess1239;other;none;SOV;R=T;no
+yima1243;A-U-V;prefix;SVO/SOV;R=T;no
