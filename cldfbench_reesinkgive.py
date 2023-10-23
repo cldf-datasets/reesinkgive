@@ -58,10 +58,10 @@ def normalise_cell(cell):
     return cell.strip()
 
 
-def languoid_to_lang(languoid, source_assocs):
+def languoid_to_lang(languoid, language_names, source_assocs):
     language = {
         'ID': languoid.glottocode,
-        'Name': languoid.name,
+        'Name': language_names.get(languoid.glottocode) or languoid.name,
         'Glottocode': languoid.glottocode,
     }
     isocode = languoid.iso
@@ -129,6 +129,19 @@ class Dataset(BaseDataset):
                 dict(zip(header, map(normalise_cell, row)))
                 for row in rdr]
 
+        former_excel_sheet = self.raw_dir / 'Reesink2013_modified.Sheet1.csv'
+        with open(former_excel_sheet, encoding='utf-8') as f:
+            rdr = csv.reader(f)
+            header = next(rdr)
+            assert (header[0], header[1]) == ('Language name', 'Glottocode')
+            # drop that second header line
+            _ = next(rdr)
+            language_names = {
+                glottocode: language_name
+                for row in rdr
+                if (language_name := row[0].strip())
+                and (glottocode := row[1].strip())}
+
         with open(self.etc_dir / 'sources.bib', encoding='utf-8') as f:
             sources = parse_file(f, 'bibtex')
         source_assocs = {
@@ -144,7 +157,7 @@ class Dataset(BaseDataset):
         glottolog = args.glottolog.api
         glottocodes = {row['Glottocode'] for row in raw_data}
         language_table = [
-            languoid_to_lang(languoid, source_assocs)
+            languoid_to_lang(languoid, language_names, source_assocs)
             for languoid in glottolog.languoids(ids=glottocodes)]
 
         value_table = [
