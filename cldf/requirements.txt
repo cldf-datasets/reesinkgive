@@ -4,7 +4,7 @@ Babel==2.13.0
 bs4==0.0.1
 certifi==2023.7.22
 cldfbench==1.14.0
--e git+https://github.com/cldf-datasets/reesinkgive@a0ed66ffdbfc300d201ff3ce3a89c31d29fbbb4b#egg=cldfbench_reesinkgive
+-e git+https://github.com/cldf-datasets/reesinkgive@0b25f1a2ff7cfb2e1755dcc09ed8812573b7a45c#egg=cldfbench_reesinkgive
 cldfcatalog==1.5.1
 cldfzenodo==1.1.0
 clldutils==3.20.0
