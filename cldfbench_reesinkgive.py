@@ -153,6 +153,11 @@ class Dataset(BaseDataset):
         parameters = {
             param['Original_Name']: param
             for param in self.etc_dir.read_csv('parameters.csv', dicts=True)}
+        for parameter in parameters.values():
+            if (grammacodes := parameter.get('Grammacodes')):
+                parameter['Grammacodes'] = [
+                    id_.strip()
+                    for id_ in grammacodes.split(',')]
 
         glottolog = args.glottolog.api
         glottocodes = {row['Glottocode'] for row in raw_data}
@@ -188,7 +193,12 @@ class Dataset(BaseDataset):
             'LanguageTable',
             'http://cldf.clld.org/v1.0/terms.rdf#source',
             'Source_comment')
-        args.writer.cldf.add_component('ParameterTable')
+        args.writer.cldf.add_component(
+            'ParameterTable',
+            {
+                'name': 'Grammacodes',
+                'separator': ';',
+            })
         args.writer.cldf.add_component('CodeTable')
 
         args.writer.objects['LanguageTable'] = language_table

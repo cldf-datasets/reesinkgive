@@ -1,6 +1,6 @@
-ID,Original_Name,Name,Description
-affix-order,Order of verb and actor/undergoer affíxes,Order of verb and actor/undergoer affíxes,
-affix-position,Position of undergoer affix,Position of undergoer affix,
-clause-level-order,Clause-level order,Clause-level order,
-recipient-vs-theme,Recipient vs. theme,Recipient vs. theme,
-recipient-suppletion,Recipient suppletion,Recipient suppletion,
+ID,Original_Name,Name,Description,Topics,Grammacodes
+affix-order,Order of verb and actor/undergoer affíxes,Order of verb and actor/undergoer affíxes,"There are many different possibilities for ordering the verb (V), the actor affix (A/S), and the undergoer affix (U). ","order, verb, A-argument, S-argument, P-argument, person index","RGORD, AARG, PARG, PXING, SARG"
+affix-position,Position of undergoer affix,Position of undergoer affix,"In transitive clauses, the undergoer person affix can be a prefix, a suffix, or both (under different conditions), or there may be none. ","order, person index, P-argument","RGORD, PARG, PARG, PXING"
+clause-level-order,Clause-level order,Clause-level order,Most languages of the present sample have SOV or SVO order.,"order, clause","DMORD, CS"
+recipient-vs-theme,Recipient vs. theme,Recipient vs. theme,"In most languages, the R affixes are the same as the T suffixes, though sometimes R is different from T, and it may be identical to beneficiary.","recipient, theme","RARG, TARG"
+recipient-suppletion,Recipient suppletion,Recipient suppletion,Quite a few New Guinea languages have different roots for ‘give’ depending on the person of the recipient.,"recipient, suppletion","RARG, SUPP"
