@@ -13,7 +13,7 @@
         {
             "rdf:about": "https://github.com/cldf-datasets/reesinkgive",
             "rdf:type": "prov:Entity",
-            "dc:created": "b45519f",
+            "dc:created": "f5d74b0",
             "dc:title": "Repository"
         },
         {
@@ -26,7 +26,7 @@
     "prov:wasGeneratedBy": [
         {
             "dc:title": "python",
-            "dc:description": "3.8.10"
+            "dc:description": "3.8.19"
         },
         {
             "dc:title": "python-packages",
@@ -295,6 +295,10 @@
                         "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
                         "required": false,
                         "name": "Description"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Map_Icon"
                     }
                 ],
                 "foreignKeys": [

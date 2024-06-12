@@ -1,27 +1,27 @@
-ID,Parameter_ID,Name,Description
-affix-order-a-u-v,affix-order,A-U-V,
-affix-order-a-u-v--a-v-u,affix-order,A-U-V/ A-V-U,
-affix-order-a-v-u,affix-order,A-V-U,
-affix-order-other,affix-order,other,
-affix-order-s-a-v,affix-order,S/A-V,
-affix-order-u-a-v--a-v-u,affix-order,U-A-V/ A-V-U,
-affix-order-u-v-a,affix-order,U-V-A,
-affix-order-u-v-a-v-u-a,affix-order,U-V-A/V-U-A,
-affix-order-v-a,affix-order,V-A,
-affix-order-v-a-u,affix-order,V-A-U,
-affix-order-v-s-a,affix-order,V-S/A,
-affix-order-v-u-a,affix-order,V-U-A,
-affix-position-none,affix-position,none,
-affix-position-prefix,affix-position,prefix,
-affix-position-prefix-suffix,affix-position,prefix/suffix,
-affix-position-suffix,affix-position,suffix,
-clause-level-order-sov,clause-level-order,SOV,
-clause-level-order-svo,clause-level-order,SVO,
-clause-level-order-svo-sov,clause-level-order,SVO/SOV,
-clause-level-order-vso,clause-level-order,VSO,
-recipient-suppletion-no,recipient-suppletion,no,
-recipient-suppletion-suppletion,recipient-suppletion,suppletion,
-recipient-vs-theme-r-and-t-different,recipient-vs-theme,R and T different,
-recipient-vs-theme-r-and-t-partially-different,recipient-vs-theme,R and T partially different,
-recipient-vs-theme-r-beneficiary,recipient-vs-theme,R=beneficiary,
-recipient-vs-theme-r-t,recipient-vs-theme,R=T,
+ID,Parameter_ID,Name,Description,Map_Icon
+affix-order-a-u-v,affix-order,A-U-V,,cdd0000
+affix-order-a-u-v--a-v-u,affix-order,A-U-V/ A-V-U,,ccccccc
+affix-order-a-v-u,affix-order,A-V-U,,c990099
+affix-order-other,affix-order,other,,cffffff
+affix-order-s-a-v,affix-order,S/A-V,,ddd0000
+affix-order-u-a-v--a-v-u,affix-order,U-A-V/ A-V-U,,dcccccc
+affix-order-u-v-a,affix-order,U-V-A,,d990099
+affix-order-u-v-a-v-u-a,affix-order,U-V-A/V-U-A,,scccccc
+affix-order-v-a,affix-order,V-A,,d0000dd
+affix-order-v-a-u,affix-order,V-A-U,,c00ffff
+affix-order-v-s-a,affix-order,V-S/A,,c0000dd
+affix-order-v-u-a,affix-order,V-U-A,,d00ffff
+affix-position-none,affix-position,none,,cffffff
+affix-position-prefix,affix-position,prefix,,cdd0000
+affix-position-prefix-suffix,affix-position,prefix/suffix,,c990099
+affix-position-suffix,affix-position,suffix,,c0000dd
+clause-level-order-sov,clause-level-order,SOV,,c0000dd
+clause-level-order-svo,clause-level-order,SVO,,cdd0000
+clause-level-order-svo-sov,clause-level-order,SVO/SOV,,c990099
+clause-level-order-vso,clause-level-order,VSO,,cffff00
+recipient-suppletion-no,recipient-suppletion,no,,cffffff
+recipient-suppletion-suppletion,recipient-suppletion,suppletion,,cdd0000
+recipient-vs-theme-r-and-t-different,recipient-vs-theme,R and T different,,cdd0000
+recipient-vs-theme-r-and-t-partially-different,recipient-vs-theme,R and T partially different,,cff6600
+recipient-vs-theme-r-beneficiary,recipient-vs-theme,R=beneficiary,,c990099
+recipient-vs-theme-r-t,recipient-vs-theme,R=T,,cffff00
