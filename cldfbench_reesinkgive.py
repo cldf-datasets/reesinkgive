@@ -150,6 +150,13 @@ class Dataset(BaseDataset):
                 self.etc_dir.read_csv('source_assocs.csv', dicts=True),
                 lambda r: r['glottocode'])}
 
+        etc_codes = (
+            {k.strip(): v.strip()
+             for k, v in row.items()
+             if k.strip and v.strip()}
+            for row in self.etc_dir.read_csv('codes.csv', dicts=True))
+        etc_codes = {row['ID']: row for row in etc_codes if row}
+
         parameters = {
             param['Original_Name']: param
             for param in self.etc_dir.read_csv('parameters.csv', dicts=True)}
@@ -182,7 +189,7 @@ class Dataset(BaseDataset):
             code_id = make_code_id(value['Parameter_ID'], value['Value'])
             if code_id in codes:
                 continue
-            codes[code_id] = {
+            codes[code_id] = etc_codes.get(code_id) or {
                 'ID': code_id,
                 'Parameter_ID': value['Parameter_ID'],
                 'Name': value['Value'],
@@ -199,7 +206,7 @@ class Dataset(BaseDataset):
                 'name': 'Grammacodes',
                 'separator': ';',
             })
-        args.writer.cldf.add_component('CodeTable')
+        args.writer.cldf.add_component('CodeTable', 'Map_Icon')
 
         args.writer.objects['LanguageTable'] = language_table
         args.writer.objects['ParameterTable'] = parameters.values()

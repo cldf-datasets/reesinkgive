@@ -1,0 +1,27 @@
+ID,Parameter_ID,Name,Map_Colour,Map_Icon
+affix-order-a-u-v,affix-order,A-U-V,red,cdd0000
+affix-order-a-u-v--a-v-u,affix-order,A-U-V/ A-V-U,grey,ccccccc
+affix-order-a-v-u,affix-order,A-V-U,purple,c990099
+affix-order-other,affix-order,other,white,cffffff
+affix-order-s-a-v,affix-order,S/A-V,red d,ddd0000
+affix-order-u-a-v--a-v-u,affix-order,U-A-V/ A-V-U,grey d,dcccccc
+affix-order-u-v-a,affix-order,U-V-A,purple d,d990099
+affix-order-u-v-a-v-u-a,affix-order,U-V-A/V-U-A,grey s,scccccc
+affix-order-v-a,affix-order,V-A,blue d,d0000dd
+affix-order-v-a-u,affix-order,V-A-U,light blue,c00ffff
+affix-order-v-s-a,affix-order,V-S/A,blue,c0000dd
+affix-order-v-u-a,affix-order,V-U-A,light blue d,d00ffff
+affix-position-none,affix-position,none,white,cffffff
+affix-position-prefix,affix-position,prefix,red,cdd0000
+affix-position-prefix-suffix,affix-position,prefix/suffix,purple,c990099
+affix-position-suffix,affix-position,suffix,blue,c0000dd
+clause-level-order-sov,clause-level-order,SOV,blue,c0000dd
+clause-level-order-svo,clause-level-order,SVO,red,cdd0000
+clause-level-order-svo-sov,clause-level-order,SVO/SOV,purple,c990099
+clause-level-order-vso,clause-level-order,VSO,yellow,cffff00
+recipient-suppletion-no,recipient-suppletion,no,white,cffffff
+recipient-suppletion-suppletion,recipient-suppletion,suppletion,red,cdd0000
+recipient-vs-theme-r-and-t-different,recipient-vs-theme,R and T different,red,cdd0000
+recipient-vs-theme-r-and-t-partially-different,recipient-vs-theme,R and T partially different,orange,cff6600
+recipient-vs-theme-r-beneficiary,recipient-vs-theme,R=beneficiary,purple,c990099
+recipient-vs-theme-r-t,recipient-vs-theme,R=T,yellow,cffff00
