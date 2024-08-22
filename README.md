@@ -1,4 +1,4 @@
-# Dataset reesinkgive
+# The ‘give’ event in Papuan languages
 
 ## How to cite
 
@@ -9,6 +9,8 @@ this dataset using the DOI of the [particular released version](../../releases/)
 
 
 This dataset is licensed under a CC-BY-4.0 license
+
+Available online at https://crossgram.clld.org/contributions/reesinkgive
 
 
 ## CLDF Datasets
