@@ -6,14 +6,16 @@
         }
     ],
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#StructureDataset",
+    "dc:identifier": "https://crossgram.clld.org/contributions/reesinkgive",
     "dc:license": "https://creativecommons.org/licenses/by/4.0/",
     "dc:source": "sources.bib",
+    "dc:title": "The \u2018give\u2019 event in Papuan languages",
     "dcat:accessURL": "https://github.com/cldf-datasets/reesinkgive",
     "prov:wasDerivedFrom": [
         {
             "rdf:about": "https://github.com/cldf-datasets/reesinkgive",
             "rdf:type": "prov:Entity",
-            "dc:created": "360c414",
+            "dc:created": "7229572",
             "dc:title": "Repository"
         },
         {
