@@ -1,5 +1,7 @@
 # The ‘give’ event in Papuan languages
 
+[![CLDF validation](https://github.com/cldf-datasets/reesinkgive/workflows/CLDF-validation/badge.svg)](https://github.com/cldf-datasets/reesinkgive/actions?query=workflow%3ACLDF-validation)
+
 ## How to cite
 
 If you use these data please cite
