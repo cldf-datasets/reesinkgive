@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cldfbench_reesinkgive"
+dependencies = ["cldfbench[glottolog,excel]"]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = ["pytest-cldf"]
+
+[project.entry-points."cldfbench.dataset"]
+reesinkgive = "cldfbench_reesinkgive:Dataset"
+
+[tool.setuptools]
+py-modules = ["cldfbench_reesinkgive"]
+include-package-data = true
+
+[tool.pytest.ini_options]
+testpaths = ["test.py"]
+addopts = "--cldf-metadata=cldf/cldf-metadata.json"
